@@ -1,0 +1,8 @@
+.dynamic-form-dropdown {
+    height: 30px;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 0;
+    border-bottom: 1px solid grey;
+    outline: none;
+}
