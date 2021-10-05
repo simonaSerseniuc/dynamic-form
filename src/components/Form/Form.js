@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Input from '../Input/Input.js';
+import Input from '../Input/Input.tsx';
 import NumberInput from '../NumberInput/NumberInput.js';
 import DateInput from '../DateInput/DateInput.js';
 import Dropdown from '../Dropdown/Dropdown.js';

@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Input({ name, placeholder, onChange, className }) {
+type Props = {
+  onChange: (e: React.FormEvent<HTMLInputElement>) => void,
+  name: string,
+  placeholder: string,
+  className: string,
+};
+
+function Input({ name, placeholder, onChange, className }: Props) {
     return (
         <input
             className={`${className} dynamic-form-input`}
@@ -12,13 +19,5 @@ function Input({ name, placeholder, onChange, className }) {
         />
     );
 }
-
-Input.propTypes = {
-    name: PropTypes.string.isRequired,
-    placeholder: PropTypes.string.isRequired,
-    className: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
-};
-
 
 export default Input;
