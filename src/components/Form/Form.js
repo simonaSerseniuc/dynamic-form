@@ -8,11 +8,13 @@ import './Form.css';
 
 function Form({ rows, className }) {
     const [json, setJson] = useState({});
+    const [valid, setValid] = useState(null);
 
     const onChange = (event) => {
         const value = event.target.value;
         const name = event.target.name;
 
+        setValid(null);
         setJson({
             ...json,
             [name]: value,
@@ -35,50 +37,55 @@ function Form({ rows, className }) {
     }
 
     const submitForm = () => {
-        if (validation ())
+        if (validation ()) {
             console.log(JSON.stringify(json));
+        } else {
+            setValid(false);
+        }
     }
 
     return (
         <div className={`${className} Form-wrapper`}>
-            {
-                Object.keys(rows).map(id => {
-                    switch(rows[id].type) {
-                        case 'input':
-                            return <Input className="Form-row"
-                                key={`form-${id}`}
-                                name={id}
-                                placeholder={rows[id].name}
-                                onChange={onChange}
-                            />
-                        case 'number':
-                            return <NumberInput className="Form-row"
-                                key={`form-${id}`}
-                                name={id}
-                                placeholder={rows[id].name}
-                                onChange={onChange}
-                                min={rows[id].min}
-                                max={rows[id].max}
-                            />
-                        case 'date':
-                            return <DateInput className="Form-row"
-                                key={`form-${id}`}
-                                name={id}
-                                placeholder={rows[id].name}
-                                onChange={onChange}
-                            />
-                        case 'dropdown':
-                            return <Dropdown className="Form-row"
-                                key={`form-${id}`}
-                                name={id}
-                                placeholder={rows[id].name}
-                                options={rows[id].options}
-                                onChange={onChange}
-                            />
-                        default: return;
-                    }
-                })
-            }
+            <div className="Form-fields">
+                {
+                    Object.keys(rows).map(id => {
+                        switch(rows[id].type) {
+                            case 'input':
+                                return <Input className="Form-row"
+                                    key={`form-${id}`}
+                                    name={id}
+                                    placeholder={rows[id].name}
+                                    onChange={onChange}
+                                />
+                            case 'number':
+                                return <NumberInput className="Form-row"
+                                    key={`form-${id}`}
+                                    name={id}
+                                    placeholder={rows[id].name}
+                                    onChange={onChange}
+                                    min={rows[id].min}
+                                    max={rows[id].max}
+                                />
+                            case 'date':
+                                return <DateInput className="Form-row"
+                                    key={`form-${id}`}
+                                    name={id}
+                                    placeholder={rows[id].name}
+                                    onChange={onChange}
+                                />
+                            case 'dropdown':
+                                return <Dropdown className="Form-row"
+                                    key={`form-${id}`}
+                                    name={id}
+                                    placeholder={rows[id].name}
+                                    options={rows[id].options}
+                                    onChange={onChange}
+                                />
+                            default: return;
+                        }
+                    })
+                }
+            </div>
             <button
                 className="Form-button"
                 type="button"
@@ -86,6 +93,10 @@ function Form({ rows, className }) {
             >
                 Send
             </button>
+            {
+                (valid === false) &&
+                    <p className="Form-invalid-message"> Form is not valid</p>
+            }
         </div>
     );
 }

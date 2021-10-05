@@ -1,6 +1,11 @@
 .Form-wrapper {
     display: flex;
     flex-direction: column;
+}
+
+.Form-fields {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
     border: 1px solid lightgrey;
     border-radius: 10px;
@@ -20,4 +25,9 @@
     border-radius: 10px;
     border: 1px solid lightgrey;
     width: 80px;
+    margin-top: 10px;
+}
+
+.Form-invalid-message {
+    color: darkred;
 }
